@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const axios = require('axios');
 
 const { easy } = require('./generate')
 
@@ -28,9 +29,16 @@ function getUserInput() {
     ])
 }
 
+async function getGithubInfor(username){
+    const { data }= await axios.get(`https://api.github.com/users/${username}`);
+    return data;
+}
+
 async function main() {
     const {username, color} = await getUserInput();
-    easy(username, color);
+   // easy(username, color);
+   const data = getGithubInfor(username);
+   Headers(username, color);
 }
 
 main();

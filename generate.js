@@ -1,4 +1,6 @@
 const fs = require('fs');
+const util = require('util');
+
 
 const readFilePromise = util.promisify(fs.readFile);
 const writeFilePromise = util.promisify(fs.watchFile);
@@ -29,7 +31,7 @@ const easy = async function(username, color) {
 }
 
 const medium = async function(username, color) {
-    const template = await readFilePromise("./template.html", "utf-8");
+    const template = await readFilePromise("./template", "utf-8");
     const htmlString = template.replace(new RegExp('\\#\\[username\\]\\#', 'g'), username).replace(new RegExp('\\#\\[color\\]\\#','g'), color);
 
     
