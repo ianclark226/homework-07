@@ -35,10 +35,11 @@ async function getGithubInfor(username){
 }
 
 async function main() {
-    const {username, color} = await getUserInput();
-   // easy(username, color);
-   const data = getGithubInfor(username);
-   Headers(username, color);
+    const {username} = await getUserInput();
+  
+   const data = await getGithubInfor(username); 
+   hard(username, data);
+   
 }
 
 main();

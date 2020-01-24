@@ -38,7 +38,7 @@ const medium = async function(username, color) {
     await writeFilePromise(generateFileName(), htmlString);
 }
 
-const hard = async function(username, color) {
+const hard = async function(username, data) {
     const temp = await readFilePromise("./template.ejs", "utf-8");
     const htmlString = ejs.render(template, {
         username,

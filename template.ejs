@@ -7,14 +7,11 @@
     <title><%= username %></title>
 </head>
 <body>
-    <h1>Hello, my name is <%=username%>. My favorite color is <%=color%></h1>
-    <% if (color === 'blue') {%>
-    <p>I love seeing the ocean during the summer</p>
-    <% } %>
-        <% elseif (color === 'red') {%>
-        <p> I love the red leaves falling in fall</p>
-        <% } %>
-
+    <h1>Hello, my name is <%= username %>.</h1>
+    <h1>My public repos count is <%= data.public_repos %>.</h1>
+    <h1>My followers <%= data.followers %>.</h1>
+    <h1>I am following  <%= data.following %>.</h1>
+    
     
 </body>
 </html>
