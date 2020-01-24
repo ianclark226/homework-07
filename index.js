@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 
+const { easy } = require('./generate')
+
 function getUserInput() {
     return inquirer.prompt([
         {
@@ -28,7 +30,7 @@ function getUserInput() {
 
 async function main() {
     const {username, color} = await getUserInput();
-    console.log(username, color);
+    easy(username, color);
 }
 
 main();
