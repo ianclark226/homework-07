@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>Hello, my name is <%=username%>. My favorite color is <%=color%></h1>
+    <% if (color === 'blue') {%>
+    <p>I love seeing the ocean during the summer</p>
+    <% } %>
+        <% elseif (color === 'red') {%>
+        <p> I love the red leaves falling in fall</p>
+        <% } %>
+
+    
 </body>
 </html>

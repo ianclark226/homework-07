@@ -1,5 +1,8 @@
 const fs = require('fs');
 
+const readFilePromise = util.promisify(fs.readFile);
+const writeFilePromise = util.promisify(fs.watchFile);
+
 const generateFileName = function() {
     return `./${(new Date).getTime()}.html`;
 }
@@ -40,11 +43,13 @@ const hard = async function(username, color) {
         color,
     });
 
+    await writeFilePromise(generateFileName(), htmlString);
+
 }
 
 
 module.exports = {
     easy,
     medium,
-    hard,
+    hard
 }
