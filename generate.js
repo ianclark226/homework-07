@@ -27,10 +27,24 @@ const easy = async function(username, color) {
 
 const medium = async function(username, color) {
     const template = await readFilePromise("./template.html", "utf-8");
-    console.log(template);
+    const htmlString = template.replace(new RegExp('\\#\\[username\\]\\#', 'g'), username).replace(new RegExp('\\#\\[color\\]\\#','g'), color);
+
+    
+    await writeFilePromise(generateFileName(), htmlString);
 }
+
+const hard = async function(username, color) {
+    const temp = await readFilePromise("./template.ejs", "utf-8");
+    const htmlString = ejs.render(template, {
+        username,
+        color,
+    });
+
+}
+
 
 module.exports = {
     easy,
     medium,
+    hard,
 }
