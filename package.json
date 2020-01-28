@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,8 @@
   "homepage": "https://github.com/ianclark226/homework-07#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "inquirer": "^7.0.3"
+    "ejs": "^3.0.1",
+    "inquirer": "^7.0.3",
+    "puppeteer": "^2.0.0"
   }
 }

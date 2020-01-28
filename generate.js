@@ -1,15 +1,17 @@
 const fs = require('fs');
 const util = require('util');
+const ejs = require('ejs');
+const puppeteer = require('puppeteer');
 
 
 const readFilePromise = util.promisify(fs.readFile);
-const writeFilePromise = util.promisify(fs.watchFile);
+const writeFilePromise = util.promisify(fs.writeFile);
 
-const generateFileName = function() {
-    return `./${(new Date).getTime()}.html`;
+const generateFileName = function(fileExtension = 'html') {
+    return `./_${(new Date).getTime()}.${fileExtension}`;
 }
 
-const easy = async function(username, color) {
+const first = async function(username, color) {
     const htmlString = `
     <!DOCTYPE html>
 <html lang="en">
@@ -30,28 +32,45 @@ const easy = async function(username, color) {
 
 }
 
-const medium = async function(username, color) {
-    const template = await readFilePromise("./template", "utf-8");
-    const htmlString = template.replace(new RegExp('\\#\\[username\\]\\#', 'g'), username).replace(new RegExp('\\#\\[color\\]\\#','g'), color);
+
+
+const second = async function(username, color) {
+    const template = await readFilePromise("./template.html", "utf-8");
+    const htmlString = template.replace(new RegExp('\\#\\[username\\]\\#', 'g'), username).replace(new RegExp('\\#\\[color\\]\\#', 'g'), color);
 
     
     await writeFilePromise(generateFileName(), htmlString);
 }
 
-const hard = async function(username, data) {
-    const temp = await readFilePromise("./template.ejs", "utf-8");
+
+
+const third = async function(username, data) {
+    const template = await readFilePromise("./template.ejs", "utf-8");
     const htmlString = ejs.render(template, {
         username,
-        color,
+        data
     });
 
-    await writeFilePromise(generateFileName(), htmlString);
+    console.log("Got Here");
 
+    await writeFilePromise(generateFileName(), htmlString);
+    
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    
+    await page.setContent(htmlString);
+    await page.pdf({path: generateFileName('pdf'), format: 'A4'});
+
+    
+    await browser.close();
+    console.log("")
+
+    
 }
 
 
 module.exports = {
-    easy,
-    medium,
-    hard
+    first,
+    second,
+    third
 }

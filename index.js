@@ -1,13 +1,14 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 
-const { easy } = require('./generate')
+const { first, second, third } = require('./generate')
 
 function getUserInput() {
     return inquirer.prompt([
         {
             type: 'input',
             message: 'What is your github username?',
+            default: 'ianclark226',
             name: 'username',
         
         },
@@ -24,6 +25,14 @@ function getUserInput() {
                     name: 'Blue',
                     value: 'blue'
                 },
+                {
+                    name: 'Purple',
+                    value: 'purple'
+                },
+                {
+                    name: 'Yellow',
+                    value: 'yellow'
+                },
             ]
         }
     ])
@@ -38,7 +47,7 @@ async function main() {
     const {username} = await getUserInput();
   
    const data = await getGithubInfor(username); 
-   hard(username, data);
+   third(username, data);
    
 }
 
