@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 
-const { first, second, third } = require('./generate')
+const { generateHTML, second, third } = require('./generate')
 
 function getUserInput() {
     return inquirer.prompt([
