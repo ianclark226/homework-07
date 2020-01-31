@@ -1,1 +1,3 @@
 # Profile-Generator
+
+This is my profile generator for github. The functionality of generating the pdf and applying some information works and it can work with any github username. The main problem I've had with this is that the css that was given to me and the way I went about this homework was an absolute tragity. Making EJS work with CSS properties was an absolute nightmare and I wish I went another way to do it before it was too late. I know I struggle on some of the hw but this is a homework that I know I will be getting a not so grade on. Next time I will stay away from EJS.
