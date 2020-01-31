@@ -234,7 +234,6 @@ const third = async function(username, data) {
       printBackground: true
     });
 
-    
     await browser.close();
     console.log("")
 
