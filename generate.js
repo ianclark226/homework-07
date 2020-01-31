@@ -2,6 +2,7 @@ const fs = require('fs');
 const util = require('util');
 const ejs = require('ejs');
 const puppeteer = require('puppeteer');
+const path = require('path');
 // const ejsConverter = require('ejs-html');
 
 
@@ -217,23 +218,27 @@ const third = async function(username, data) {
 
     // const html = ejsConverter.render(htmlString)
 
+    const fileName = generateFileName();
     
 
-    await writeFilePromise(generateFileName(), htmlString);
+    await writeFilePromise(fileName, htmlString);
     
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    
-    await page.setContent(htmlString);
-    await page.pdf({path: generateFileName('pdf'), format: 'A4'});
 
+    const pathToHtml = path.join(__dirname, fileName);
     
+    await page.goto(`file://${pathToHtml}`, { waitUntil: 'networkidle0' });
+    await page.pdf({
+      path: generateFileName('pdf'), format: 'A4',
+      printBackground: true
+    });
+
     await browser.close();
     console.log("")
 
     
 }
-
 
 module.exports = {
     generateHTML,
