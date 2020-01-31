@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const axios = require('axios');
 
 const { generateHTML, second, third } = require('./generate')
+// console.log(generateHTML);
+// console.log(second);
 
 function getUserInput() {
     return inquirer.prompt([
@@ -40,7 +42,9 @@ function getUserInput() {
 
 async function getGithubInfor(username){
     const { data }= await axios.get(`https://api.github.com/users/${username}`);
+    
     return data;
+    
 }
 
 async function main() {
@@ -48,7 +52,10 @@ async function main() {
   
    const data = await getGithubInfor(username); 
    third(username, data);
-   
+  
+//    console.log(data);  
 }
 
 main();
+
+
